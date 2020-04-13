@@ -17,32 +17,30 @@ public class Battleship extends Ships  {
 	}
 	
 	// Fields for Player 1
-	static ArrayList<Ships> ships = new ArrayList<Ships>();
-	static int rows = 10;
-	static int columns = 10;
-	static int ship_count;
-	static int position;
-	static int remaining_ships;
-	static String gameboard[][] = new String[rows][columns];
+	private static ArrayList<Ships> ships = new ArrayList<Ships>();
+	private static int rows = 10;
+	private static int columns = 10;
+	private static int ship_count;
+	private static int position;
+	private static int remaining_ships;
+	private static String gameboard[][] = new String[rows][columns];
 	
 	// Fields for Player 2
-	static ArrayList<Ships> ships2 = new ArrayList<Ships>();
-	static int rows2 = 10;
-	static int columns2 = 10;
-	static int ship_count2;
-	static int position2;
-	static int remaining_ships2;
-	static String gameboard2[][] = new String[rows][columns];
+	private static ArrayList<Ships> ships2 = new ArrayList<Ships>();
+	private static int rows2 = 10;
+	private static int columns2 = 10;
+	private static int position2;
+	private static int remaining_ships2;
+	private static String gameboard2[][] = new String[rows][columns];
 	
-	static String Player1;
-	static String Player2;
+	private static String Player1;
+	private static String Player2;
 	
 	// Creates/resets gameboard for Player 1
 	public static void ResetBoard() {
 		for(int i = 0; i < rows; i++) {
 			System.out.println();
 			for(int j = 0; j < columns; j++) {
-				
 				gameboard[i][j] = " O";
 				
 			}
@@ -89,7 +87,6 @@ public class Battleship extends Ships  {
 		System.out.println();
 	}
 	
-	
 /*==========================================================================================================================================
  * =======================================================SET UP PROCESS STARTS HERE========================================================
  * ========================================================================================================================================= */
@@ -117,9 +114,7 @@ public class Battleship extends Ships  {
 		ResetBoard();
 		ships.clear();
 		DisplayBoard();
-		
-		System.out.println(Player1 + ", place your ships!");
-		
+			
 		// Create ships
 		Ships Aircraft_Carrier = new Ships("Aircraft Carrier", 5, " A", 0, 0, 0, 0);
 		Ships Battleship = new Ships("Battleship", 4, " B", 0, 0, 0, 0);
@@ -141,13 +136,13 @@ public class Battleship extends Ships  {
 		// Loop through every ship in ships ArrayList
 		outerloop:
 		for(ship_count = 0; ship_count < ships.size(); ship_count++) {
-			System.out.println("Ships on board: " + ship_count);
 			int row_end = 0;
 			int column_end = 0;
 			
 			// First, choose coordinates to place the STERN OF THE SHIP (not middle/anywhere else)
-			System.out.println("Place your " + ships.get(ship_count).getName());
+			System.out.println(Player1 + ", place your " + ships.get(ship_count).getName());
 			System.out.println("Size: " + ships.get(ship_count).getSize());
+			System.out.println("Ships on board: " + ship_count);
 			System.out.println();
 			
 			// Select Row Number
@@ -289,18 +284,18 @@ public class Battleship extends Ships  {
 			int column_end = 0;
 			
 			// First, choose coordinates to place the END OF THE SHIP (not middle/anywhere else)
-			System.out.println("Enter coordinates to place your " + ships2.get(ship_count).getName() + " (1 through 10)");
+			System.out.println(Player2 + ", place your " + ships2.get(ship_count).getName());
 			System.out.println("Size: " + ships2.get(ship_count).getSize());
 			System.out.println();
 			
 			// X coordinate input
-			System.out.println("X coordinate: ");
+			System.out.println("Select Row Number (1 through 10): ");
 			String s = scan.nextLine();
 			int row_front = Integer.parseInt(s);
 			row_front--;
 			
 			// Y coordinate input
-			System.out.println("Y coordinate: ");
+			System.out.println("Select Column Number (1 through 10): ");
 			String s2 = scan.nextLine();
 			int column_front = Integer.parseInt(s2);
 			column_front--;
@@ -352,7 +347,7 @@ public class Battleship extends Ships  {
 						gameboard2[row_end][column_end + i] = ships2.get(ship_count).getInitials();	
 						
 						ships2.get(ship_count).setXCoordinateStern(row_end);					// Save END coordinates of ship
-						ships2.get(ship_count).setYCoordinateStern(column_end + i);			// This is important when trying to find them later
+						ships2.get(ship_count).setYCoordinateStern(column_end + i);				// This is important when trying to find them later
 								
 					}
 					
@@ -401,7 +396,7 @@ public class Battleship extends Ships  {
 		DisplayBoard2();
 		ResetBoard2();
 		
-		// 
+		// Decide who goes first via coin flip
 		Random coin_flip = new Random();
 		int num = coin_flip.nextInt(2);
 		
@@ -414,7 +409,6 @@ public class Battleship extends Ships  {
 			System.out.println(Player2 + " will go first!");
 			Play2();
 		}
-		
 	}
 	
 /*========================================================END SET UP FOR PLAYERS=======================================================================
@@ -431,14 +425,14 @@ public class Battleship extends Ships  {
 	 *  Nested loop searches x axis first, then y axis.
 	 *  
 	 *  So basically,
-	 *  	if(x-input - front x coordinate == 0 [for if the ship is placed horizontally] [front x coordinate == end x coordinate for horizontal ships]
+	 *  	if(x-input - bow x coordinate == 0 [for if the ship is placed horizontally] [bow x coordinate == stern x coordinate for horizontal ships]
 	 *  	OR
-	 *  	(x-input >= front x coordinate AND x-input < end x coordinate [for if the ship is placed vertically)
+	 *  	(x-input >= bow x coordinate AND x-input < stern x coordinate [for if the ship is placed vertically)
 	 *  		then you guessed the right x coordinate
 	 *  
-	 *  		if(y-input - front y coordinate == 0 [for if the ship is placed vertically]
+	 *  		if(y-input - bow y coordinate == 0 [for if the ship is placed vertically]
 	 *  		OR
-	 *  		if(y-input >= front y coordinate AND y-input <= end y coordinate [for if the ship is placed horizontally] [front y coordinate == end y coordinate for vertical ships]
+	 *  		if(y-input >= bow y coordinate AND y-input <= stern y coordinate [for if the ship is placed horizontally] [bow y coordinate == stern y coordinate for vertical ships]
 	 *  			You hit a ship!
 	 *  			Initials of ship will be displayed on gameboard
 	 *  			Size of ship will be decremented until it hits 0, where it will be DELETED from the ships ArrayList
@@ -470,20 +464,18 @@ public class Battleship extends Ships  {
 				System.out.println("Enter coordinates to see if a ship is there or not");
 
 				// Ask for x coordinate
-				System.out.println("Enter x coordinate (1 through 10)");
+				System.out.println("Enter Row Number (1 through 10)");
 				Scanner s = new Scanner(System.in);
 				String x_input = s.nextLine();
 				int x = Integer.parseInt(x_input);
 				x--;
 
 				// Ask for y coordinate
-				System.out.println("Enter y coordinate (1 through 10)");
+				System.out.println("Enter Column Number (1 through 10)");
 				Scanner s2 = new Scanner(System.in);
 				String y_input = s.nextLine();
 				int y = Integer.parseInt(y_input);
 				y--;
-
-
 
 				if(gameboard2[x][y] != " O") {
 					System.out.println("You tried those coordinates already! Try again");
@@ -571,14 +563,14 @@ public class Battleship extends Ships  {
 				System.out.println("Enter coordinates to see if a ship is there or not");
 
 				// Ask for x coordinate
-				System.out.println("Enter x coordinate (1 through 10)");
+				System.out.println("Enter Row Number (1 through 10)");
 				Scanner s = new Scanner(System.in);
 				String x_input = s.nextLine();
 				int x = Integer.parseInt(x_input);
 				x--;
 
 				// Ask for y coordinate
-				System.out.println("Enter y coordinate (1 through 10)");
+				System.out.println("Enter Colummn Number (1 through 10)");
 				Scanner s2 = new Scanner(System.in);
 				String y_input = s.nextLine();
 				int y = Integer.parseInt(y_input);
@@ -588,7 +580,6 @@ public class Battleship extends Ships  {
 					System.out.println("You tried those coordinates already! Try again");
 					Play2();
 				}
-
 
 				// Loop through every ship in ships ArrayList to check if you hit one of them or not
 				// Checks ships ArrayList (because Player 2 is aiming for Player 1's ships)
@@ -651,7 +642,7 @@ public class Battleship extends Ships  {
 		}
 	}
 
-	// Displays which ships still need to be sunk; used for Player 1.
+	// Prints Player 1's remaining ships
 	public static void RemainingShips() {
 		System.out.println("Remaining Ships: ");
 		
@@ -660,6 +651,7 @@ public class Battleship extends Ships  {
 		}
 	}
 	
+	// Prints Player 2's remaining ships
 	public static void RemainingShips2() {
 		System.out.println("Remaining Ships: ");
 		

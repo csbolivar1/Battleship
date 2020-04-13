@@ -6,22 +6,22 @@
 
 public class Ships {
 	
-	public String n; // Name of ship
-	public String i; // Initials of ships to be displayed on gameboard
-	public int s;	// Size of ship; also used to see remaining parts of ship if it should be hit during Play
-	public int xcoordinate_stern;	// ONLY SAVES STERN (back) X COORDINATE OF SHIP								
-	public int ycoordinate_stern;	// ONLY SAVES STERN (back) Y COORDINATE OF SHIP
-	public int xcoordinate_bow;  // ONLY SAVES BOW (front) X COORDINATE OF SHIP
-	public int ycoordinate_bow;  // ONLY SAVES BOW (front) Y COORDINATE OF SHIP
+	private String n; // Name of ship
+	private String i; // Initials of ships to be displayed on gameboard
+	private int s;	// Size of ship; also used to see remaining parts of ship if it should be hit during Play
+	private int xcoordinate_stern;	// ONLY SAVES STERN (back) X COORDINATE OF SHIP								
+	private int ycoordinate_stern;	// ONLY SAVES STERN (back) Y COORDINATE OF SHIP
+	private int xcoordinate_bow;  // ONLY SAVES BOW (front) X COORDINATE OF SHIP
+	private int ycoordinate_bow;  // ONLY SAVES BOW (front) Y COORDINATE OF SHIP
 	
 	public Ships(String name, int size, String initials, int xpos_stern, int ypos_stern, int xpos_bow, int ypos_bow) {
-		n = name;
-		s = size;
-		i = initials;
-		xcoordinate_stern = xpos_stern;
-		ycoordinate_stern = ypos_stern;
-		xcoordinate_bow = xpos_bow;
-		ycoordinate_bow = ypos_bow;
+		this.n = name;
+		this.s = size;
+		this.i = initials;
+		this.xcoordinate_stern = xpos_stern;
+		this.ycoordinate_stern = ypos_stern;
+		this.xcoordinate_bow = xpos_bow;
+		this.ycoordinate_bow = ypos_bow;
 	}
 	
 	// Getters and Setters
