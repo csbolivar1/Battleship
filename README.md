@@ -3,6 +3,8 @@
 Battleship is a strategy type where two players guess where the opponent's ships are through a coordinate system.
 More info found [here](https://en.wikipedia.org/wiki/Battleship_(game) "Battleship") 
 
+Open the game by running PlayBattleship.bat, located in the PlayBattleship folder
+
 ## Setup
         1 2 3 4 5 6 7 8 9 10
  	  1 # # # # # # # # # # 
