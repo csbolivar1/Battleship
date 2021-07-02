@@ -23,7 +23,7 @@ public class Players {
 	}
 
 	
-	public void ResetBoard() {
+	public void resetBoard() {
 		for(int i = 0; i < rows; i++) {
 			System.out.println();
 			for(int j = 0; j < columns; j++) {
@@ -36,7 +36,7 @@ public class Players {
 	}
 	
 	// Show gameboard
-	public void DisplayBoard() {
+	public void displayBoard() {
 		System.out.println("Viewing " + this.name + "'s board");
 		System.out.println(" 1 2 3 4 5 6 7 8 9 10 ");
 		

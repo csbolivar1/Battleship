@@ -45,7 +45,7 @@ public class Battleship  {
 	
 	// Set up game pieces
 	public static void setUp(Players player, ArrayList<Ships> ship) {
-		player.ResetBoard();
+		player.resetBoard();
 		
 		getNum = new Scanner(System.in); 		// Scanner for Row Number
 		
@@ -72,7 +72,7 @@ public class Battleship  {
 			
 		}
 		
-		player.ResetBoard();
+		player.resetBoard();
 	}
 		
 	private static void placeShips(Players player) {
@@ -117,7 +117,7 @@ public class Battleship  {
 			row_end = row_front;						
 			column_end = column_front;
 			
-			player.DisplayBoard();
+			player.displayBoard();
 			
 			direction = 3;
 			
@@ -177,7 +177,7 @@ public class Battleship  {
 				
 				}
 				
-				player.DisplayBoard();
+				player.displayBoard();
 				
 			}
 			
@@ -223,7 +223,7 @@ public class Battleship  {
 					
 				}
 				
-				player.DisplayBoard();
+				player.displayBoard();
 			}
 	}
 
@@ -271,7 +271,7 @@ public class Battleship  {
 		while(remaining_ships != 0) {
 			int count = 0;
 			
-			opposingplayer.DisplayBoard();
+			opposingplayer.displayBoard();
 
 			System.out.println("Enter coordinates to see if a ship is there or not");
 			
