@@ -1,12 +1,13 @@
-/** BATTLESHIP!!!
- * How to Play:
- * 	The object of the game is to sink all the ships
- *  first player to sink all the ships wins!
- *  Optional: keep track of how many tries it takes 
- *  to find all the ships.*/
+/** BATTLESHIP RULES
+ * Objective: 'sink' the opposing player's ships (game pieces) 
+ * First, players place anonymously places their respective ships onto the 10x10 gameboard
+ * Each ship occupies a certain number of spaces; can be placed horizontally or vertically
+ * Once both players' ships are placed, each player takes turns calling out a space on their opponent's board (X/Y coordinate) in an attempt to hit a ship
+ * If successful, the ship's initials will display, and the player who made the call out goes again.
+ * If unsuccessful, it is the opposing player's turn
+ * First player to eliminate their opponent's ships wins! */
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Battleship  {
@@ -25,25 +26,18 @@ public class Battleship  {
 	public Battleship() {}
 
 /*==========================================================================================================================================
- * =======================================================SET UP PROCESS STARTS HERE========================================================
+ * ===========================================================SET UP SHIPS==================================================================
  * ========================================================================================================================================= */
 	
 	/** setUp() Function: Place ships on the game board 
 	 *  
-	 *  Start placing each ship on gameboard via for loop
-	 *  	User enters coordinates to define where the FRONT of the ship is going to be
-	 *  	These coordinates are copied to row_end and column_end variables to help define the BACK of the ship in the nested for loop
-	 *  	Ask for user input again, this time whether to place ships horizontally to the right or vertically down
-	 *  	Ships are created/placed via for loop that loops the same amount of times as the ship's size.
-	 *  		Initials parameter in constructor defines where each ship is.
-	 *  		Coordinates of the END of the ship are saved during this loop.
-	 * 		
-	 * The purpose of saving the coordinates is to remember where each of the ships are when the board is reset
-	 * 
 	 * 	After all the ships have been placed, the board is reset and Play() starts.
 	 *  */
 	
-	// Set up game pieces
+	// setUp() is a series of pre-game steps
+	// 1. Create ship instances
+	// 2. Add ship instances to an arraylist and assign them to a player
+	// 3. Place ships onto the gameboard, done by looping placeShips().
 	public static void setUp(Players player, ArrayList<Ships> ship) {
 		player.resetBoard();
 		
@@ -66,7 +60,7 @@ public class Battleship  {
 		// Give ships to player instance
 		player.setShips(ship);
 		
-		// Loop through every ship in ships ArrayList	
+		// Loop through every ship in ships ArrayList, 	
 		for(player.getShip_count(); player.getShip_count() < player.getShips().size(); player.setShip_count(player.getShip_count() + 1)) {
 			placeShips(player);
 			
@@ -74,7 +68,8 @@ public class Battleship  {
 		
 		player.resetBoard();
 	}
-		
+	
+	// Place ships onto gameboard
 	private static void placeShips(Players player) {
 		
 			row_end = 0;
@@ -82,7 +77,7 @@ public class Battleship  {
 			row_front = 11;
 			column_front = 11;
 			
-			// Choose coordinates to place the bow (front) of the ship 
+			// Choose coordinates to place front of the ship 
 			System.out.println(player.getName() + ", place your " + player.getShips().get(player.getShip_count()).getName());
 			System.out.println("Size: " + player.getShips().get(player.getShip_count()).getSize());
 			System.out.println("Ships on board: " + player.getShip_count());
@@ -110,8 +105,8 @@ public class Battleship  {
 				}
 			} while (column_front > 10);
 						
-			player.getShips().get(player.getShip_count()).setXCoordinateBow(row_front); // Save as bow (front) coordinates of ship.
-			player.getShips().get(player.getShip_count()).setYCoordinateBow(column_front); // Save as bow (front) coordinates of ship.
+			player.getShips().get(player.getShip_count()).setXCoordinateBow(row_front); // Save as front coordinates of ship.
+			player.getShips().get(player.getShip_count()).setYCoordinateBow(column_front); // Save as front coordinates of ship.
 			
 			// Set back end of coordinates to front end; 
 			row_end = row_front;						
@@ -133,7 +128,7 @@ public class Battleship  {
 				}
 			} while (direction > 2);
 			
-			// Place ship horizontally to the right
+			// Option 1: Place ship horizontally to the right
 			if(direction == 1) {
 				
 				// Prevent ships from intersecting
@@ -141,13 +136,11 @@ public class Battleship  {
 					
 					if(player.gameboard[row_end][column_end + i] != " O") {
 						System.out.println("There's already a ship there!");
-						i = player.getShips().get(player.getShip_count()).getSize();  // Had to end the loop so that game doesn't jump here and repeat ships, why does it jump here???
-						placeShips(player);
+						i = player.getShips().get(player.getShip_count()).getSize();  // End loop so flow doesn't jump here and repeat ships.
 					}
 
 				}
 				
-				// TODO: setup out of bounds exception
 				// BUG: During second try of placing a ship after out of bounds exception, getCoordinates method is placing ship horizontally, regardless if it's already been placed vertically.
 				/*try {
 					for(test = 0; test < player.getShips().get(player.getShip_count()).getSize(); test++) {
@@ -166,13 +159,12 @@ public class Battleship  {
 				}*/
 				
 				// Place initials of ship on gameboard horizontally	
-				// TODO: getCoordinates is going here after placing ship that previously had out of bounds error, 
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
 					System.out.println("Direction is " + direction);
 					System.out.println("Test is " + i);
 					
 					player.gameboard[row_end][column_end + i] = player.getShips().get(player.getShip_count()).getInitials();					
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end); 		// Save stern (back) coordinates of ship to player instance			
+					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end); 		// Save rear coordinates of ship to player instance			
 					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_end + i);  // Used to identify ship location on gameboard
 				
 				}
@@ -181,7 +173,7 @@ public class Battleship  {
 				
 			}
 			
-			// Place ship vertically downwards
+			// Option 2: Place ship vertically downwards
 			else if(direction == 2) {
 				System.out.println("You chose vertically!");
 				
@@ -190,7 +182,7 @@ public class Battleship  {
 					
 					if(player.gameboard[row_end + j][column_end] != " O") {
 						System.out.println("There's already a ship there!");
-						j = player.getShips().get(player.getShip_count()).getSize();  // Had to end the loop so that game doesn't jump here and repeat ships, why does it jump here???
+						j = player.getShips().get(player.getShip_count()).getSize();  // End loop so flow doesn't jump here and repeat ships.
 						placeShips(player);
 					}
 
@@ -202,7 +194,7 @@ public class Battleship  {
 						
 						if(player.gameboard[row_end + j][column_end] != " O") {
 							System.out.println("There's already a ship there!");
-							j = player.getShips().get(player.getShip_count()).getSize();  // Had to end the loop so that game doesn't jump here and repeat ships, why does it jump here???
+							j = player.getShips().get(player.getShip_count()).getSize();  // End loop so flow doesn't jump here and repeat ships.
 							getCoordinates(player);
 						}
 
@@ -218,7 +210,7 @@ public class Battleship  {
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
 					
 					player.gameboard[row_end + i][column_end] = player.getShips().get(player.getShip_count()).getInitials();		
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end + i); // Save stern (back) coordinates of ship  to player instance		
+					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end + i); // Save rear coordinates of ship  to player instance		
 					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_end);  // Used to identify ship location on gameboard
 					
 				}
@@ -229,33 +221,15 @@ public class Battleship  {
 
 /*========================================================END SET UP FOR PLAYERS=======================================================================
  * ==================================================================================================================================================== 
- * =========================================================GAME STARTS HERE===========================================================================*/	
+ * ===========================================================BEGIN PLAY==============================================================================*/	
 	
 	
-	/** Play() Function: Play the game.
-	 *  
-	 *  Keeps looping while there are ships in the ArrayList to be sunk.
-	 *  
-	 *  First, asks user for coordinates to hit
-	 *  Nested loop searches x axis first, then y axis.
-	 *  
-	 *  So basically,
-	 *  	if(x-input - bow x coordinate == 0 [for if the ship is placed horizontally] [bow x coordinate == stern x coordinate for horizontal ships]
-	 *  	OR
-	 *  	(x-input >= bow x coordinate AND x-input < stern x coordinate [for if the ship is placed vertically)
-	 *  		then you guessed the right x coordinate
-	 *  
-	 *  		if(y-input - bow y coordinate == 0 [for if the ship is placed vertically]
-	 *  		OR
-	 *  		if(y-input >= bow y coordinate AND y-input <= stern y coordinate [for if the ship is placed horizontally] [bow y coordinate == stern y coordinate for vertical ships]
-	 *  			You hit a ship!
-	 *  			Initials of ship will be displayed on gameboard
-	 *  			Size of ship will be decremented until it hits 0, where it will be DELETED from the ships ArrayList
-	 *  			run Play() again to ask for new coordinates
-	 *  	
-	 *  	If none of those conditions are met, then it's a miss, and Player 2's turn starts 
-	 *  	
-	 *   */
+/**
+ * Once both players' ships are placed, each player takes turns calling out a
+ * space on their opponent's board (X/Y coordinate) in an attempt to hit a ship
+ * If successful, the ship's initials will display, and the player who made the
+ * call out goes again. If unsuccessful, it is the opposing player's turn
+ */	
 	
 	public static void play(Players mainplayer, Players opposingplayer) {
 		
@@ -367,7 +341,7 @@ public class Battleship  {
 		System.out.println();
 	}
 
-	// Game ends here.
+	// Game ends.
 	private static void displayResults(Players winner) {
 		
 		System.out.println(winner.getName() + " wins!");

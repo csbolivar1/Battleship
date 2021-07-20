@@ -1,18 +1,14 @@
-/**The Ships class is responsible for everything that has to do with the ships
- * (AKA gamepieces), which are:
- * Name, Initials, Size,
- * X and Y Coordinate of the front of the ship,
- * X and Y Coordinate of the end (back) of the ship. */
+/** The Ships class is responsible for creating the ship game pieces and their attributes */
 
 public class Ships {
 	
 	private String n; // Name of ship
-	private String i; // Initials of ships to be displayed on gameboard
-	private int s;	// Size of ship; also used to see remaining parts of ship if it should be hit during Play
-	private int xcoordinate_stern;	// ONLY SAVES STERN (back) X COORDINATE OF SHIP								
-	private int ycoordinate_stern;	// ONLY SAVES STERN (back) Y COORDINATE OF SHIP
-	private int xcoordinate_bow;  // ONLY SAVES BOW (front) X COORDINATE OF SHIP
-	private int ycoordinate_bow;  // ONLY SAVES BOW (front) Y COORDINATE OF SHIP
+	private String i; // Initials of ships to be displayed on gameboard to signify location
+	private int s;	// Size of ship; number of spaces a ship occupies on the gameboard
+	private int xcoordinate_stern;	// X coordinate of rear of a ship							
+	private int ycoordinate_stern;	// Y coordinate of rear of a ship	
+	private int xcoordinate_bow;  // X coordinate of front of a ship	
+	private int ycoordinate_bow;  // Y coordinate of front of a ship	
 	
 	public Ships(String name, int size, String initials, int xpos_stern, int ypos_stern, int xpos_bow, int ypos_bow) {
 		this.n = name;

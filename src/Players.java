@@ -22,7 +22,7 @@ public class Players {
 		
 	}
 
-	
+	// Remove all ships from board
 	public void resetBoard() {
 		for(int i = 0; i < rows; i++) {
 			System.out.println();

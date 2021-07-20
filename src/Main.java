@@ -70,7 +70,7 @@ public class Main {
 		System.out.println("*****************************************************************************************************");
 		System.out.println();
 		
-		// Giving player instances ships
+		// Generate ships for player instances
 		ArrayList<Ships> player1ships = new ArrayList<Ships>();
 		ArrayList<Ships> player2ships = new ArrayList<Ships>();
 		
