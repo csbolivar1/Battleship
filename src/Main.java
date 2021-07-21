@@ -1,3 +1,5 @@
+/** Main class; execution starts here */
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +18,7 @@ public class Main {
 		System.out.println();
 		System.out.println("Battleship is a 2-Player guessing game.");
 		System.out.println("Each Player must continue to guess the coordinates of their opponent's ships.");
-		System.out.println("Whoever sinks the other guy's ships first wins!!");
+		System.out.println("Whoever sinks the other player's ships first wins!!");
 		System.out.println();
 		
 		System.out.println("*****************************************************************************************************");
@@ -43,7 +45,7 @@ public class Main {
 		
 		System.out.println();
 		
-		System.out.println("2. Next, the Player must choose to place the rest of the ship HORIZONTALLY TO THE RIGHT or VERTICALLY DOWNWARDS (via input).");
+		System.out.println("2. Next, the Player must choose to place the rest of the ship HORIZONTALLY TO THE RIGHT or VERTICALLY DOWNWARDS.");
 		System.out.println("\t" + "This is the only way to place ships. If any of them overlap or go out of bounds," + "\n" + "\t" 
 				+ "you have to start placing all of them from the beginning, so choose carefully!"
 				+"\n" + "\t" + "(Hint: Pay attention to the size of the ship so that mistakes don't happen.)");

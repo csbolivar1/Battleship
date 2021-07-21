@@ -1,3 +1,5 @@
+/** The Battleship class is responsible for gameplay, including setup process */
+
 /** BATTLESHIP RULES
  * Objective: 'sink' the opposing player's ships (game pieces) 
  * First, players place anonymously places their respective ships onto the 10x10 gameboard
@@ -6,6 +8,8 @@
  * If successful, the ship's initials will display, and the player who made the call out goes again.
  * If unsuccessful, it is the opposing player's turn
  * First player to eliminate their opponent's ships wins! */
+
+/** The Ships class is responsible for creating the ship game pieces and their attributes */
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,28 +20,24 @@ public class Battleship  {
 	private static String next;
 	private static int xGuess;
 	private static int yGuess;
-	private static int row_end;
-	private static int column_end;
-	private static int row_front;
+	private static int column_rear;
 	private static int column_front;
+	private static int row_rear;
+	private static int row_front;
 	private static int direction;
 	
 	// Constructor; same as Ships class
 	public Battleship() {}
 
-/*==========================================================================================================================================
+/* =========================================================================================================================================
  * ===========================================================SET UP SHIPS==================================================================
  * ========================================================================================================================================= */
 	
-	/** setUp() Function: Place ships on the game board 
-	 *  
-	 * 	After all the ships have been placed, the board is reset and Play() starts.
-	 *  */
+	/* setUp() is a series of pre-game steps 
+	 * 1. Create ship instances 
+	 * 2. Add ship instances to an arraylist and assign them to a player 
+	 * 3. Place ships onto the gameboard, done by looping placeShips(). */
 	
-	// setUp() is a series of pre-game steps
-	// 1. Create ship instances
-	// 2. Add ship instances to an arraylist and assign them to a player
-	// 3. Place ships onto the gameboard, done by looping placeShips().
 	public static void setUp(Players player, ArrayList<Ships> ship) {
 		player.resetBoard();
 		
@@ -72,8 +72,8 @@ public class Battleship  {
 	// Place ships onto gameboard
 	private static void placeShips(Players player) {
 		
-			row_end = 0;
-			column_end = 0;
+			row_rear = 0;
+			column_rear = 0;
 			row_front = 11;
 			column_front = 11;
 			
@@ -109,8 +109,8 @@ public class Battleship  {
 			player.getShips().get(player.getShip_count()).setYCoordinateBow(column_front); // Save as front coordinates of ship.
 			
 			// Set back end of coordinates to front end; 
-			row_end = row_front;						
-			column_end = column_front;
+			row_rear = row_front;						
+			column_rear = column_front;
 			
 			player.displayBoard();
 			
@@ -134,7 +134,7 @@ public class Battleship  {
 				// Prevent ships from intersecting
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
 					
-					if(player.gameboard[row_end][column_end + i] != " O") {
+					if(player.gameboard[row_rear][column_rear + i] != " O") {
 						System.out.println("There's already a ship there!");
 						i = player.getShips().get(player.getShip_count()).getSize();  // End loop so flow doesn't jump here and repeat ships.
 					}
@@ -163,9 +163,9 @@ public class Battleship  {
 					System.out.println("Direction is " + direction);
 					System.out.println("Test is " + i);
 					
-					player.gameboard[row_end][column_end + i] = player.getShips().get(player.getShip_count()).getInitials();					
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end); 		// Save rear coordinates of ship to player instance			
-					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_end + i);  // Used to identify ship location on gameboard
+					player.gameboard[row_rear][column_rear + i] = player.getShips().get(player.getShip_count()).getInitials();					
+					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_rear); 		// Save rear coordinates of ship to player instance			
+					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_rear + i);  // Used to identify ship location on gameboard
 				
 				}
 				
@@ -180,7 +180,7 @@ public class Battleship  {
 				// Prevent ships from intersecting
 				for(int j = 0; j < player.getShips().get(player.getShip_count()).getSize(); j++) {
 					
-					if(player.gameboard[row_end + j][column_end] != " O") {
+					if(player.gameboard[row_rear + j][column_rear] != " O") {
 						System.out.println("There's already a ship there!");
 						j = player.getShips().get(player.getShip_count()).getSize();  // End loop so flow doesn't jump here and repeat ships.
 						placeShips(player);
@@ -209,9 +209,9 @@ public class Battleship  {
 				
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
 					
-					player.gameboard[row_end + i][column_end] = player.getShips().get(player.getShip_count()).getInitials();		
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_end + i); // Save rear coordinates of ship  to player instance		
-					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_end);  // Used to identify ship location on gameboard
+					player.gameboard[row_rear + i][column_rear] = player.getShips().get(player.getShip_count()).getInitials();		
+					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_rear + i); // Save rear coordinates of ship  to player instance		
+					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_rear);  // Used to identify ship location on gameboard
 					
 				}
 				
@@ -343,7 +343,6 @@ public class Battleship  {
 
 	// Game ends.
 	private static void displayResults(Players winner) {
-		
 		System.out.println(winner.getName() + " wins!");
 		
 	}

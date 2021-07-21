@@ -1,13 +1,15 @@
+/** The Players class is responsible for player attributes, including respective gameboards for each player */
+
 import java.util.ArrayList;
 
 public class Players {
 	
+	public  String gameboard[][];
 	private String name;
 	private static int rows = 10;
 	private static int columns = 10;
 	private int ship_count; // Keep track of which ship is being processed in ships arraylist during setup.
 	private int remaining_ships;
-	public  String gameboard[][];
 	private ArrayList<Ships> ships;
 	
 	public Players(String name, int ship_count, int remaining_ships, ArrayList<Ships> playerships) {

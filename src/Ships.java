@@ -5,19 +5,19 @@ public class Ships {
 	private String n; // Name of ship
 	private String i; // Initials of ships to be displayed on gameboard to signify location
 	private int s;	// Size of ship; number of spaces a ship occupies on the gameboard
-	private int xcoordinate_stern;	// X coordinate of rear of a ship							
-	private int ycoordinate_stern;	// Y coordinate of rear of a ship	
-	private int xcoordinate_bow;  // X coordinate of front of a ship	
-	private int ycoordinate_bow;  // Y coordinate of front of a ship	
+	private int xCoordinate_Rear;	// X coordinate of rear of a ship							
+	private int yCoordinate_Rear;	// Y coordinate of rear of a ship	
+	private int xCoordinate_Front;  // X coordinate of front of a ship	
+	private int yCoordinate_Front;  // Y coordinate of front of a ship	
 	
-	public Ships(String name, int size, String initials, int xpos_stern, int ypos_stern, int xpos_bow, int ypos_bow) {
+	public Ships(String name, int size, String initials, int xpos_rear, int ypos_rear, int xpos_front, int ypos_front) {
 		this.n = name;
 		this.s = size;
 		this.i = initials;
-		this.xcoordinate_stern = xpos_stern;
-		this.ycoordinate_stern = ypos_stern;
-		this.xcoordinate_bow = xpos_bow;
-		this.ycoordinate_bow = ypos_bow;
+		this.xCoordinate_Rear = xpos_rear;
+		this.yCoordinate_Rear = ypos_rear;
+		this.xCoordinate_Front = xpos_front;
+		this.yCoordinate_Front = ypos_front;
 	}
 	
 	// Getters and Setters
@@ -46,35 +46,35 @@ public class Ships {
 	}
 	
 	public int getXCoordinateStern() {
-		return xcoordinate_stern;
+		return xCoordinate_Rear;
 	}
 
 	public void setXCoordinateStern(int x) {
-		this.xcoordinate_stern = x;
+		this.xCoordinate_Rear = x;
 	}
 
 	public int getYCoordinaiteStern() {
-		return ycoordinate_stern;
+		return yCoordinate_Rear;
 	}
 
 	public void setYCoordinateStern(int y) {
-		this.ycoordinate_stern = y;
+		this.yCoordinate_Rear = y;
 	}
 	
 	public int getXCoordinateBow() {
-		return xcoordinate_bow;
+		return xCoordinate_Front;
 	}
 
 	public void setXCoordinateBow(int fx) {
-		this.xcoordinate_bow = fx;
+		this.xCoordinate_Front = fx;
 	}
 
 	public int getYCoordinateBow() {
-		return ycoordinate_bow;
+		return yCoordinate_Front;
 	}
 
 	public void setYCoordinateBow(int fy) {
-		this.ycoordinate_bow = fy;
+		this.yCoordinate_Front = fy;
 	}
 
 }
