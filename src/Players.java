@@ -93,10 +93,5 @@ public class Players {
 
 	public void setShips(ArrayList<Ships> ships) {
 		this.ships = ships;
-	}
-	
-	public void resetShips() {
-		
-	}
-	
+	}	
 }

@@ -160,9 +160,7 @@ public class Battleship  {
 				
 				// Place initials of ship on gameboard horizontally	
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
-					System.out.println("Direction is " + direction);
-					System.out.println("Test is " + i);
-					
+
 					player.gameboard[row_rear][column_rear + i] = player.getShips().get(player.getShip_count()).getInitials();					
 					player.getShips().get(player.getShip_count()).setXCoordinateRear(row_rear); 		// Save rear coordinates of ship to player instance			
 					player.getShips().get(player.getShip_count()).setYCoordinateRear(column_rear + i);  // Used to identify ship location on gameboard
