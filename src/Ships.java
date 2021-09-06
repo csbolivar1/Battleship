@@ -45,35 +45,35 @@ public class Ships {
 		this.i = i;
 	}
 	
-	public int getXCoordinateStern() {
+	public int getXCoordinateRear() {
 		return xCoordinate_Rear;
 	}
 
-	public void setXCoordinateStern(int x) {
+	public void setXCoordinateRear(int x) {
 		this.xCoordinate_Rear = x;
 	}
 
-	public int getYCoordinaiteStern() {
+	public int getYCoordinateRear() {
 		return yCoordinate_Rear;
 	}
 
-	public void setYCoordinateStern(int y) {
+	public void setYCoordinateRear(int y) {
 		this.yCoordinate_Rear = y;
 	}
 	
-	public int getXCoordinateBow() {
+	public int getXCoordinateFront() {
 		return xCoordinate_Front;
 	}
 
-	public void setXCoordinateBow(int fx) {
+	public void setXCoordinateFront(int fx) {
 		this.xCoordinate_Front = fx;
 	}
 
-	public int getYCoordinateBow() {
+	public int getYCoordinateFront() {
 		return yCoordinate_Front;
 	}
 
-	public void setYCoordinateBow(int fy) {
+	public void setYCoordinateFront(int fy) {
 		this.yCoordinate_Front = fy;
 	}
 

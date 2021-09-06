@@ -105,8 +105,8 @@ public class Battleship  {
 				}
 			} while (column_front > 10);
 						
-			player.getShips().get(player.getShip_count()).setXCoordinateBow(row_front); // Save as front coordinates of ship.
-			player.getShips().get(player.getShip_count()).setYCoordinateBow(column_front); // Save as front coordinates of ship.
+			player.getShips().get(player.getShip_count()).setXCoordinateFront(row_front); // Save as front coordinates of ship.
+			player.getShips().get(player.getShip_count()).setYCoordinateFront(column_front); // Save as front coordinates of ship.
 			
 			// Set back end of coordinates to front end; 
 			row_rear = row_front;						
@@ -164,8 +164,8 @@ public class Battleship  {
 					System.out.println("Test is " + i);
 					
 					player.gameboard[row_rear][column_rear + i] = player.getShips().get(player.getShip_count()).getInitials();					
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_rear); 		// Save rear coordinates of ship to player instance			
-					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_rear + i);  // Used to identify ship location on gameboard
+					player.getShips().get(player.getShip_count()).setXCoordinateRear(row_rear); 		// Save rear coordinates of ship to player instance			
+					player.getShips().get(player.getShip_count()).setYCoordinateRear(column_rear + i);  // Used to identify ship location on gameboard
 				
 				}
 				
@@ -210,8 +210,8 @@ public class Battleship  {
 				for(int i = 0; i < player.getShips().get(player.getShip_count()).getSize(); i++) {
 					
 					player.gameboard[row_rear + i][column_rear] = player.getShips().get(player.getShip_count()).getInitials();		
-					player.getShips().get(player.getShip_count()).setXCoordinateStern(row_rear + i); // Save rear coordinates of ship  to player instance		
-					player.getShips().get(player.getShip_count()).setYCoordinateStern(column_rear);  // Used to identify ship location on gameboard
+					player.getShips().get(player.getShip_count()).setXCoordinateRear(row_rear + i); // Save rear coordinates of ship  to player instance		
+					player.getShips().get(player.getShip_count()).setYCoordinateRear(column_rear);  // Used to identify ship location on gameboard
 					
 				}
 				
@@ -281,9 +281,9 @@ public class Battleship  {
 			// Loop through all ships in list, check for hits
 			while(count < opposingplayer.getShips().size()) {
 				// Check if the row number entered has a ship 
-				if(xGuess >= opposingplayer.getShips().get(count).getXCoordinateBow() && xGuess <= opposingplayer.getShips().get(count).getXCoordinateStern()) {
+				if(xGuess >= opposingplayer.getShips().get(count).getXCoordinateFront() && xGuess <= opposingplayer.getShips().get(count).getXCoordinateRear()) {
 					// If successful, check if Y coordinate entered has a ship
-					if(yGuess >= opposingplayer.getShips().get(count).getYCoordinateBow() && yGuess <= opposingplayer.getShips().get(count).getYCoordinaiteStern()) {
+					if(yGuess >= opposingplayer.getShips().get(count).getYCoordinateFront() && yGuess <= opposingplayer.getShips().get(count).getYCoordinateRear()) {
 						
 						System.out.println("Hit! You hit the " + opposingplayer.getShips().get(count).getName() + ". Go again!");		// Hit													
 						opposingplayer.getShips().get(count).setSize(opposingplayer.getShips().get(count).getSize() - 1); 				// Decrement size of ship after hit

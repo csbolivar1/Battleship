@@ -25,10 +25,10 @@ public class BattleshipTest {
 		
 		// Create loop through player1ships that confirms coodinates for all ships (greater than 0, less than 11)
 		for (int i = 0; i < player1.getShips().size(); i++) {
-			Assert.assertTrue(player1ships.get(i).getXCoordinateBow() >= 0 && player1ships.get(i).getXCoordinateBow() <= 9);
-			Assert.assertTrue(player1ships.get(i).getYCoordinateBow() >= 0 && player1ships.get(i).getYCoordinateBow() <= 9);
-			Assert.assertTrue(player1ships.get(i).getXCoordinateStern() >= 0 && player1ships.get(i).getXCoordinateStern() <= 9);
-			Assert.assertTrue(player1ships.get(i).getYCoordinaiteStern() >= 0 && player1ships.get(i).getYCoordinaiteStern() <= 9);
+			Assert.assertTrue(player1ships.get(i).getXCoordinateFront() >= 0 && player1ships.get(i).getXCoordinateFront() <= 9);
+			Assert.assertTrue(player1ships.get(i).getYCoordinateFront() >= 0 && player1ships.get(i).getYCoordinateFront() <= 9);
+			Assert.assertTrue(player1ships.get(i).getXCoordinateRear() >= 0 && player1ships.get(i).getXCoordinateRear() <= 9);
+			Assert.assertTrue(player1ships.get(i).getYCoordinateRear() >= 0 && player1ships.get(i).getYCoordinateRear() <= 9);
 		}
 	}
 }
