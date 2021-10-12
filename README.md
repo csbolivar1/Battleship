@@ -3,9 +3,13 @@
 Battleship is a strategy type where two players guess where the opponent's ships are through a coordinate system.
 More info found [here](https://en.wikipedia.org/wiki/Battleship_(game) "Battleship") 
 
-Open the game by running PlayBattleship.bat, located in the PlayBattleship folder
+## How to run
 
-## Setup
+Prerequisites: Ensure you have Java installed on your computer. You can download and install the latest Java version [here](https://www.java.com/download/ie_manual.jsp)
+
+In the PlayBattleship folder, run PlayBattleship.bat (safe to bypass Windows Defender warnings; .bat runs Battleship.jar)
+
+## Board Layout
         1 2 3 4 5 6 7 8 9 10
  	  1 # # # # # # # # # # 
 	  2 # # # # # # # # # # 
